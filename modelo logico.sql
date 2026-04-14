@@ -54,6 +54,18 @@ CREATE TABLE manutencao (
     FOREIGN KEY (id_contrato) REFERENCES CONTRATO(id_contracto)
 );
 
+create table FILTRAGEM (
+id_filtragem INT AUTO_INCREMENT PRIMARY KEY,
+id_veiculo INT,
+id_cliente int,
+id_contrato int,
+data_filtragem VARCHAR(10), 
+observacao VARCHAR(100), 
+FOREIGN KEY (id_veiculo) REFERENCES veiculo(id_veiculo),
+FOREIGN KEY (id_cliente) REFERENCES CLIENTE(id_cliente),
+FOREIGN KEY (id_contrato) REFERENCES CONTRATO(id_contracto)
+);
+
 INSERT INTO CLIENTE (nome, email, endereco, idade) VALUES
 ('Ana Pereira', 'ana@gmail.com', 'Rua D', '28'),
 ('Bruno Costa', 'bruno@gmail.com', 'Rua E', '35'),
@@ -86,8 +98,16 @@ INSERT INTO manutencao (id_veiculo, id_cliente, id_contrato, valor, tipo_manuten
 (5, 4, 4, 450.00, 'Freios'),
 (1, 5, 5, 300.00, 'Alinhamento');
 
+INSERT INTO FILTRAGEM (data_filtragem, observacao, id_veiculo, id_cliente, id_contrato, id_filtragem) VALUES 
+('2024-03-01', 'Filtragem padrão realizada sem intercorrências.', 4, 1, 3, 1),
+('2024-03-02', 'Necessário reforço na pressão do filtro de sedimentos.', 3, 2, 1, 2),
+('2024-03-05', 'Troca de elemento filtrante solicitada pelo cliente.', 2, 3, 2, 3),
+('2024-03-10', 'Filtragem de carvão ativado para remoção de odor.', 5, 4, 4, 5),
+('2024-03-12', 'Manutenção preventiva realizada durante a filtragem.', 1, 5, 5, 4);
+
 select * from Cliente;
 select * from empresa;
 select * from veiculo;
 select * from contrato;
 select * from manutencao;
+select * from FILTRAGEM;
